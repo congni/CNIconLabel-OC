@@ -82,6 +82,7 @@
     self.textLabelColor = [UIColor whiteColor];
     self.iconStyle = IconPositionStyle_Left;
     self.labelAlpha = 1.0;
+    self.maxWidth = CGFLOAT_MAX;
 }
 
 #pragma mark 判断类型
@@ -128,6 +129,11 @@
             
             viewWidth = textLabelPositionX + textLabelWidth;
             viewHeigth = MAX(textLabelHeight, imageHeight);
+            
+            if (viewWidth > self.maxWidth) {
+                textLabelWidth = self.maxWidth - textLabelPositionX;
+                viewWidth = self.maxWidth;
+            }
         } else if (self.iconStyle == IconPositionStyle_Up) {
             if (textLabelWidth < imageWidth) {
                 textLabelPositionX = (imageWidth - textLabelWidth) / 2.0;
@@ -140,6 +146,11 @@
             
             viewWidth = MAX(textLabelWidth, imageWidth);
             viewHeigth = textLabelPositionY + textLabelHeight;
+            
+            if (textLabelWidth > self.maxWidth) {
+                textLabelWidth = self.maxWidth;
+                viewWidth = self.maxWidth;
+            }
         } else if (self.iconStyle == IconPositionStyle_Right) {
             textLabelPositionX = 0.0;
             imageViewPositionX = textLabelPositionX + textLabelWidth + self.textPositionAdjustmentOffset.vertical;
@@ -153,6 +164,12 @@
             
             viewWidth = imageViewPositionX + imageWidth;
             viewHeigth = MAX(textLabelHeight, imageHeight);
+            
+            if (viewWidth > self.maxWidth) {
+                imageViewPositionX = self.maxWidth - imageWidth;
+                textLabelWidth = imageViewPositionX - self.textPositionAdjustmentOffset.vertical;
+                viewWidth = self.maxWidth;
+            }
         } else if (self.iconStyle == IconPositionStyle_Bottom) {
             if (textLabelWidth < imageWidth) {
                 textLabelPositionX = (imageWidth - textLabelWidth) / 2.0;
@@ -166,6 +183,11 @@
             
             viewWidth = MAX(imageWidth, textLabelWidth);
             viewHeigth = imageViewPositionY + imageHeight;
+            
+            if (textLabelWidth > self.maxWidth) {
+                textLabelWidth = self.maxWidth;
+                viewWidth = self.maxWidth;
+            }
         }
         
         _textLabel.frame = CGRectMake(textLabelPositionX, textLabelPositionY, textLabelWidth, textLabelHeight);

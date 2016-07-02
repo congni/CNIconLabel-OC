@@ -83,6 +83,10 @@ typedef NS_ENUM(NSInteger, WithOutStyle) {
  *  设置label文字的透明度，其目的用于便于设置按钮的触控面积，特别是返回按钮
  */
 @property (nonatomic, assign) float labelAlpha;
+/**
+ *  最大宽度设定，默认无限制
+ */
+@property (nonatomic, assign) CGFloat maxWidth;
 
 /**
  *  更新文字， 图片沿用之前设置
