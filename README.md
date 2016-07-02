@@ -4,7 +4,7 @@ OC版本的图标按钮，支持上下左右四个方位的图标位置；
 支持纯文本、纯图片，但不建议使用；
 支持大小自适应；
 支持pod集成：
-pod 'CNIconLabel-OC', '~> 1.0.1'
+pod 'CNIconLabel-OC', '~> 1.0.2'
 
 使用：
 CNIconLabel *label = [[CNIconLabel alloc] init];
